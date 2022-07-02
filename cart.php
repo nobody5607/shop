@@ -3,7 +3,7 @@
 <head>
     <?php require('./layout/head.php') ?>
 
-    <title>Cart</title>
+    <title>ตะกร้าสินค้า</title>
 </head>
 <body>
 
