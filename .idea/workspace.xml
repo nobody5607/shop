@@ -2,29 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d287fe25-703b-4920-834b-b26a4a9ba662" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/05348e6e-d4bd-4b30-97b7-9ea3841fc6f3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/05348e6e-d4bd-4b30-97b7-9ea3841fc6f3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/navbar-left.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/navbar-left.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/order-detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/order-detail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/orders.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/orders.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/script.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/script.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/carts.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/carts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/orders.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/orders.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/products.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/products.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/users.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/chart.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/chart.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/cart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layout/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/layout/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layout/navbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/layout/navbar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layout/script.php" beforeDir="false" afterPath="$PROJECT_DIR$/layout/script.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/logout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/order-detail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order.php" beforeDir="false" afterPath="$PROJECT_DIR$/order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/config.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +76,7 @@
       <workItem from="1655814075210" duration="16253000" />
       <workItem from="1656302395466" duration="13499000" />
       <workItem from="1656581021689" duration="16985000" />
-      <workItem from="1656748737733" duration="5750000" />
+      <workItem from="1656748737733" duration="7108000" />
     </task>
     <servers />
   </component>
