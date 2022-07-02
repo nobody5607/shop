@@ -24,7 +24,7 @@ if ($status == 'find-all') {
 }
 else if ($status == 'create') {
     //insert
-    $sql = "Insert Into categorys Values(null, '{$name}') ";
+    $sql = "Insert Into categorys(name) Values('{$name}') ";
     if ($conn->query($sql) === TRUE) {
         echo json_encode(['status' => 'success', 'message' => 'เพิ่มข้อมูลสำเร็จ']);
     } else {

@@ -21,6 +21,7 @@ if ($status == 'find-all') {
     if($search != ''){
         $sql .= " Where name Like '%{$search}%' Or phone Like '%{$search}%'";
     }
+    $sql .= ' Order by id desc';
     $result = $conn->query($sql);
     $output =[];
     if ($result->num_rows > 0) {
@@ -46,7 +47,7 @@ if ($status == 'find-one') {
 }
 else if ($status == 'create') {
     //insert
-    $sql = "Insert Into user Values(null, '{$username}','{$password}', '{$name}', '{$phone}', '{$role}') ";
+    $sql = "Insert Into user(username,password,name,phone,role) Values('{$username}','{$password}', '{$name}', '{$phone}', '{$role}') ";
     if ($conn->query($sql) === TRUE) {
         echo json_encode(['status' => 'success', 'message' => 'เพิ่มข้อมูลผู้ใช้งานสำเร็จ']);
     } else {

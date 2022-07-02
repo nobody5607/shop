@@ -8,7 +8,6 @@ if ($status != 'delete') {
     if ($_POST) {
         $name = $_POST['name'];
         $price = $_POST['price'];
-        $stock = (int)$_POST['stock'];
         $image = $_POST['image'];
     }
 }
@@ -23,6 +22,7 @@ if ($status == 'find-all') {
     if ($search != '') {
         $sql .= " Where name Like '%{$search}%'";
     }
+    $sql .= ' Order by id desc';
     $result = $conn->query($sql);
     $output = [];
     if ($result->num_rows > 0) {
@@ -47,7 +47,7 @@ if ($status == 'find-all') {
 }
 else if ($status == 'create') {
     //insert
-    $sql = "Insert Into products(name,price,image,stock) Values('{$name}','{$price}','{$image}',{$stock}) ";
+    $sql = "Insert Into products(name,price,image) Values('{$name}','{$price}','{$image}') ";
     if ($conn->query($sql) === TRUE) {
         echo json_encode(['status' => 'success', 'message' => 'เพิ่มข้อมูลสำเร็จ']);
     } else {
@@ -55,7 +55,7 @@ else if ($status == 'create') {
     }
 } else if ($status == 'update') {
     //insert
-    $sql = "Update products Set name='{$name}',price='{$price}',image='{$image}',stock='{$stock}' Where id='{$id}' ";
+    $sql = "Update products Set name='{$name}',price='{$price}',image='{$image}'  Where id='{$id}' ";
     if ($conn->query($sql) === TRUE) {
         echo json_encode(['status' => 'success', 'message' => 'แก้ไขข้อมูลสำเร็จ']);
     } else {

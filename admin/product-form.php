@@ -17,10 +17,7 @@
                     <input type="text" class="form-control" required v-model="name">
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">จำนวน</label>
-                    <input type="text" class="form-control" required v-model="stock">
-                </div>
+                
                 <div class="mb-3">
                     <label class="form-label">ราคา</label>
                     <input type="text" class="form-control" required v-model="price">
@@ -51,14 +48,13 @@
             id:null,
             name:null,
             price:null,
-            image:null,
-            stock:null,
+            image:null, 
         },
         created: function () {
             this.name = 'Test';
             this.price = 100.00;
             this.image = '';
-            this.stock = 100;
+            //this.stock = 100;
 
             //get user by id
             let id = new URL(location.href).searchParams.get('id');
@@ -79,7 +75,7 @@
                         this.id = data.id;
                         this.name = data.name;
                         this.price = data.price;
-                        this.stock =  data.stock;
+                         
                         this.image =  data.image;
                     } else {
                         Swal.fire({
@@ -99,8 +95,7 @@
                 let formData = new FormData();
                 formData.append('name', this.name);
                 formData.append('price', this.price);
-                formData.append('image', this.image);
-                formData.append('stock', this.stock);
+                formData.append('image', this.image); 
 
                 let status = 'create';
                 if (this.id) {
