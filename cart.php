@@ -2,42 +2,107 @@
 <html>
 <head>
     <?php require('./layout/head.php') ?>
-    <title>Login Page</title>
+
+    <title>Cart</title>
 </head>
 <body>
 
-<div id="app-login" class="row d-flex justify-content-center">
+<div id="app-carts">
+    <!-- Start Top Nav -->
+    <?php require('./layout/navbar.php'); ?>
+    <!-- Close Top Nav -->
+    <div class="container" style="margin-top: 100px">
+        <div class="mb-3">
+            <div class="row mb-3 justify-content-center">
 
-    <div class="col-md-12">
-        <p v-if="errors.length">
-        <ul>
-            <li v-for="error in errors" class="text-danger">{{ error }}</li>
-        </ul>
-        </p>
-        <form>
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-                <label class="form-label" for="username">ชื่อผู้ใช้งาน</label>
-                <input type="text" id="username" class="form-control" v-model="username"/>
+                <div class="col-md-6">
+                    <h3>ทำการสั่งซื้อ</h3>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <label for="">ที่อยู่สำหรับจัดส่ง</label>
+                            </div>
+                            <form action="#">
+                                <div class="mb-2">
+                                    <label>ชื่อนามสกุล</label>
+                                    <input type="text" class="form-control" v-model="user.shipping_name">
+                                </div>
+                                <div class="mb-2">
+                                    <label>ที่อยู่สำหรับจัดส่ง</label>
+                                    <input type="text" class="form-control" v-model="user.shipping_address">
+                                </div>
+                                <div class="mb-2">
+                                    <label>เบอร์โทรศัพท์</label>
+                                    <input type="text" class="form-control" v-model="user.shipping_phone">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title">รายการสินค้า</div>
+                                <table class="table table-responsive table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>รายการ</th>
+                                        <th>จำนวน</th>
+                                        <th>ราคาต่อหน่วย</th>
+                                        <th>รวม</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="c in carts">
+                                        <td width="200">{{c.product_name}}</td>
+                                        <td width="100">
+                                            <input @change="updateCart" :id="c.id" type="number" :value="c.qty"
+                                                   class="form-control text-center"/>
+                                        </td>
+                                        <td>{{new Intl.NumberFormat().format(c.price)}} บาท</td>
+                                        <td>{{new Intl.NumberFormat().format(c.price * c.qty)}} บาท</td>
+                                        <td >
+                                            <button @click="deleteCart(c.id)" class="btn btn-danger">ลบ</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <table>
+                                    <tr>
+                                        <td>ยอดรวมสินค้า:</td>
+                                        <td><b>{{total}}</b> บาท</td>
+                                    </tr>
+                                    <tr>
+                                        <td>รวมการจัดส่ง:</td>
+                                        <td><b>0</b> บาท</td>
+                                    </tr>
+                                    <tr>
+                                        <td>การชำระเงินทั้งหมด:</td>
+                                        <td><b>{{total}}</b> บาท</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <button @click="checkout()" class="btn btn-primary">สั่งสินค้า</button>
+                    </div>
+                </div>
             </div>
-
-            <!-- Password input -->
-            <div class="form-outline mb-4">
-                <label class="form-label" for="password">รหัสผ่าน</label>
-                <input type="password" id="password" class="form-control" v-model="password"/>
-            </div>
-
-
-            <!-- Submit button -->
-
-
-            <div class="d-grid gap-2">
-                <button @click="submit" class="btn btn-primary btn-block mb-4">เข้าสู่ระบบ</button>
-                <a class="btn btn-link mb-4">สมัครสมาชิก</a>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
+<div style="margin-bottom: 100px"></div>
 <!-- Start Footer -->
 <?php require('./layout/footer.php') ?>
 <!-- End Footer -->
@@ -46,71 +111,160 @@
 <!-- End Script -->
 <script>
     new Vue({
-        el: '#app-login',
+        el: '#app-carts',
         data: {
-            errors: [],
-            username: 'admin',
-            password: '123456'
+            carts: [],
+            user:{
+                shipping_name:'',
+                shipping_address:'',
+                shipping_phone:''
+            },
+            total: 0,
+        },
+        created() {
+            this.getCarts();
+            this.getUserById();
+            this.getCountCart();
         },
         methods: {
-            submit: async function (e) {
-                //validate username or password
-                if (this.username && this.password) {
-
-                    //set formdata
+            getCarts: async function () {
+                this.total = 0;
+                const user_id = localStorage.getItem('id');
+                if(user_id == null){
+                    location.href='/index.php';
+                }
+                let url = '/api/carts.php?status=find-all&user_id=' + user_id;
+                axios.get(url).then(response => {
+                    const {data} = response.data;
+                    this.carts = data;
+                    for (let i of this.carts) {
+                        this.total += i.price * i.qty;
+                    }
+                    this.total = new Intl.NumberFormat().format(this.total);
+                })
+            },
+            deleteCart: function (id) {
+                let text = "Confirm Delete";
+                if (confirm(text) == true) {
                     let formData = new FormData();
-                    formData.append('username', this.username);
-                    formData.append('password', this.password);
-
-                    //request api login method post
-                    let url = '/api/login.php';
+                    formData.append('id', id);
+                    let url = '/api/carts.php?status=delete';
                     axios.post(url, formData).then(response => {
-                        const {data, status, message} = response.data;
-                        //login success
-                        if (status === 'success') {
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'success',
-                                title: 'เข้าสู่ระบบสำเร็จ',
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-
-                            //set local storage
-                            setTimeout(()=>{
-                                localStorage.setItem('id', data.id);
-                                localStorage.setItem('name', data.name);
-                                localStorage.setItem('role', data.role);
-                                localStorage.setItem('phone', data.phone);
-                                // location.href = '/';
-
-                            },1500)
-                        } else {
-                            //login fail
-                            Swal.fire({
-                                position: 'center',
-                                icon: status,
-                                title: message,
-                                showConfirmButton: false,
-                                timer: 2000
-                            })
-                        }
-                    }).catch(error=>{
+                        const {status, message} = response.data;
+                        Swal.fire({
+                            position: 'center',
+                            icon: status,
+                            title: message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        this.getCarts();
+                    }).catch(error => {
                         console.log(error);
                     });
+                }
+            },
+            updateCart: function (event) {
+                const qty = event.target.value;
+                const id = event.target.id;
+                let formData = new FormData();
+                formData.append('id', id);
+                formData.append('qty', qty);
+                let url = '/api/carts.php?status=update-cart';
+                axios.post(url, formData).then(response => {
+                    const {status, message} = response.data;
+                    Swal.fire({
+                        position: 'center',
+                        icon: status,
+                        title: message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    this.getCarts();
+                }).catch(error => {
+                    console.log(error);
+                });
 
+            },
+            getCountCart:function(e){
 
+                let user_id = localStorage.getItem('id');
+
+                if(user_id){
+                    let url = '/api/carts.php?status=get-count';
+                    let formData = new FormData();
+                    formData.append('user_id', localStorage.getItem('id'));
+                    axios.post(url, formData).then(response => {
+                        const {data,status} = response.data;
+                        console.log(data);
+                        if(status === 'success'){
+                            $('#cart-number').text(data.count_cart);
+                        }
+
+                    })
+                }else{
+                    $('#cart-number').text(0);
                 }
 
-                //validate form
-                this.errors = [];
-                if (!this.username) {
-                    this.errors.push('กรุณากรอกชื่อผู้ใช้งาน');
-                }
-                if (!this.password) {
-                    this.errors.push('กรุณากรอกรหัสผ่าน.');
-                }
-                e.preventDefault();
+            },
+            getUserById:function(){
+                const id = localStorage.getItem('id');
+                const url = '/api/users.php?status=find-one' + '&id='+id;
+                axios.get(url).then(response => {
+                    const {data, status, message} = response.data;
+                    //insert or update success
+                    if (status == 'success') {
+                        this.user.shipping_name = data.shipping_name;
+                        this.user.shipping_address = data.shipping_address;
+                        this.user.shipping_phone = data.shipping_phone;
+                    }
+                }).catch(error => console.log(error));
+            },
+            updateShipping:function(){
+                let formData = new FormData();
+                formData.append('id' , localStorage.getItem('id'));
+                formData.append('shipping_name' , this.user.shipping_name);
+                formData.append('shipping_address' , this.user.shipping_address);
+                formData.append('shipping_phone' , this.user.shipping_phone);
+                const url = '/api/users.php?status=update-shipping';
+                axios.post(url, formData).then(response => {
+                    console.log(response.data);
+                }).catch(error=>{
+                    console.log(error);
+                })
+            },
+            checkout: function () {
+                //update shipping
+                this.updateShipping();
+                //end update shipping
+                const order_id = '<?= date('YmdHis').rand(1,1000)?>';
+                const id = localStorage.getItem('id');
+
+                const shipping_address = `
+                    ชื่อนามสกุล: ${this.user.shipping_name}<br/>
+                    ที่อยู่: ${this.user.shipping_address}<br/>
+                    เบอร์โทรศัพท์: ${this.user.shipping_phone}<br/>
+                `;
+
+                let formData = new FormData();
+                formData.append('user_id' , id);
+                formData.append('order_id' , order_id);
+                formData.append('shipping_address', shipping_address);
+                const url = '/api/orders.php?status=add';
+
+                axios.post(url, formData).then(response=>{
+                    const {data, status, message} = response.data;
+                    Swal.fire({
+                        position: 'center',
+                        icon: status,
+                        title: message,
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                    if(status === 'success'){
+                        location.href='order-detail.php?id='+order_id;
+                    }
+                }).catch(error=>console.log(error));
             }
         }
     })

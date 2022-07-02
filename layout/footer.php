@@ -5,8 +5,9 @@
             <div class="row pt-2">
                 <div class="col-12">
                     <p class="text-left text-light">
-                        Copyright &copy; 2021 Company Name
-                        | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                        Copyright &copy; 2022 หจก.รัฐพงษ์ธัญญพืชสาโทแอนด์ไวน์
+                        ที่อยู่ 32 หมู่ 1 ต.ธาตุนาเวง อ.เมือง จ.สกลนคร รหัสไปรษณีย์47000
+                        โทร 0816618186 0833614930
                     </p>
                 </div>
             </div>

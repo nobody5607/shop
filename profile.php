@@ -3,7 +3,7 @@
 <head>
     <?php require('./layout/head.php') ?>
 
-    <title>รายการสั่งซื้อของฉัน</title>
+    <title>โปรไฟล์</title>
 </head>
 <body>
 
@@ -14,42 +14,27 @@
     <div class="container" style="margin-top: 100px">
         <div class="mb-3">
             <div class="row mb-3 justify-content-center">
-                <h3>รายการสั่งซื้อของฉัน</h3>
-                <div class="card mt-3" v-for="i in orders">
-                    <div class="card-body">
-                        <div class="order-title">หมายเลขคำสั่งซื้อ:{{i.id}} </div>
-                        <div>สถานะการชำระเงิน: {{i.payment_status}}</div>
-                        <div>สถานะการจัดส่ง: {{i.delivery_status}}</div>
+                <h3>โปรไฟล์</h3>
+                <form @submit="submit">
+                    <div class="mb-3">
+                        <label class="form-label">ชื่อผู้ใช้งาน</label>
+                        <input type="text" class="form-control" required v-model="username">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">รหัสผ่าน</label>
+                        <input type="password" class="form-control" required v-model="password">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">ชื่อ นามสกุล</label>
+                        <input type="text" class="form-control" required v-model="name">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">เบอร์โทรศัพท์</label>
+                        <input type="text" class="form-control" required v-model="phone">
+                    </div>
 
-                        <div class="row mt-2" v-for="d in i.order_detail">
-                            <div class="col-2 " >
-                                <img :src="d.product_image" style="width:50px;height:50px;object-fit: cover;"/>
-                            </div>
-                            <div class="col-6">
-                                <label>{{d.product_name}}</label>
-                            </div>
-                            <div class="col-2">
-                                จำนวน {{d.qty}}
-                            </div>
-                            <div class="col-2 text-end" >
-                                <label>
-                                    {{new Intl.NumberFormat().format(d.price * d.qty)}}บาท</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer border-0" style="background-color: rgba(247, 156, 156, 0.05);
-    justify-content: flex-end;
-    align-items: flex-end;
-    display: flex;">
-                        <div class="text-right">
-                            <div>ค่าจัดส่ง: <span>0 บาท</span></div>
-                            <div>ยอดคำสั่งซื้อทั้งหมด: <span style="font-size: 20px;font-weight: 100;color: #FF5722;padding-left:5px;">{{new Intl.NumberFormat().format(i.total_price)}} บาท</span></div>
-                            <div class="py-2">
-                                <a href="#" @click="orderDetail(i.id)" class="btn btn-info">ดูข้อมูลการสั่งซื้อ</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <button type="submit" class="btn btn-primary">บันทึก</button>
+                </form>
             </div>
         </div>
     </div>
@@ -65,27 +50,67 @@
     new Vue({
         el: '#app-carts',
         data: {
-            orders:[]
+            id:null,
+            username:null,
+            password:null,
+            name:null,
+            phone:null,
+            role:null
         },
         created() {
-            this.getOrders();
+            this.getProfile();
         },
         methods: {
-            getOrders: async function () {
-                this.total = 0;
+            getProfile: async function () {
                 const user_id = localStorage.getItem('id');
-                if(user_id == null){
-                    location.href='/index.php';
-                }
-                let url = '/api/orders.php?status=get-order-all-by-user&user_id=' + user_id;
+                const url = '/api/users.php?status=find-one' + '&id='+user_id;
                 axios.get(url).then(response => {
-                    const {data} = response.data;
-                    this.orders = data;
-                    console.log(this.orders);
-                })
+                    const {data, status, message} = response.data;
+                    //insert or update success
+                    if (status == 'success') {
+                        this.id = data.id;
+                        this.username = data.username;
+                        this.password = data.password;
+                        this.name = data.name;
+                        this.phone = data.phone;
+                        this.role = data.role;
+                    } else {
+                        Swal.fire({
+                            position: 'center',
+                            title: message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                    }
+                }).catch(error => console.log(error));
             },
-            orderDetail: async function(id){
-                location.href='/order-detail.php?id='+id;
+            submit: async function(e){
+                let formData = new FormData();
+                formData.append('username', this.username);
+                formData.append('password', this.password);
+                formData.append('name', this.name);
+                formData.append('phone', this.phone);
+                formData.append('id', this.id);
+
+                const url = '/api/users.php?status=update-profile';
+                axios.post(url, formData).then(response => {
+                    const {status, message} = response.data;
+                    Swal.fire({
+                        position: 'center',
+                        icon: status,
+                        title: message,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    if(status === 'success'){
+                        localStorage.setItem('name', this.name);
+                        localStorage.setItem('phone', this.phone);
+                        setTimeout(function (){
+                            location.reload();
+                        },2000);
+                    }
+                }).catch(error => console.log(error));
+                e.preventDefault();
             }
         }
     })

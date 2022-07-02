@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <?php require('./layout/head.php') ?>
     <title>Login Page</title>
 </head>
 <body>
@@ -38,12 +37,7 @@
         </form>
     </div>
 </div>
-<!-- Start Footer -->
-<?php require('./layout/footer.php') ?>
-<!-- End Footer -->
 
-<?php require('./layout/script.php') ?>
-<!-- End Script -->
 <script>
     new Vue({
         el: '#app-login',
@@ -82,7 +76,7 @@
                                 localStorage.setItem('name', data.name);
                                 localStorage.setItem('role', data.role);
                                 localStorage.setItem('phone', data.phone);
-                                // location.href = '/';
+                                location.href = '/';
 
                             },1500)
                         } else {

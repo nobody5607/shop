@@ -7,4 +7,5 @@
 <script src="../assets/js/sweetalert2.all.min.js"></script>
 <script src="../assets/js/vue.min.js"></script>
 <script src="../assets/js/axios.min.js"></script>
+<script src="../assets/js/chart.min.js"></script>
 

@@ -12,11 +12,13 @@ if($status != 'delete'){
         $qty = isset($_POST['qty']) ? $_POST['qty'] : '';
         $price = isset($_POST['price']) ? $_POST['price'] : '';
         $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : '';
+    }else{
+        $user_id = isset($_GET['user_id']) ? $_GET['user_id'] : '';
     }
 }
 if ($status == 'find-all') {
     //insert
-    $sql = "Select * From categorys ";
+    $sql = "Select * From carts Where user_id='{$user_id}'";
     $result = $conn->query($sql);
     $output =[];
     if ($result->num_rows > 0) {
@@ -24,6 +26,8 @@ if ($status == 'find-all') {
         while($row = $result->fetch_assoc()) {
             $output[] = $row;
         }
+
+
         echo json_encode(['status' => 'success', 'message' => '', 'data'=>$output]);
     } else {
         echo json_encode(['status' => 'error', 'message' => 'error']);
@@ -53,7 +57,34 @@ else if ($status == 'add') {
 
 }else if ($status == 'get-count') {
     $count = getCountCart($conn, $user_id);
-    echo json_encode(['status' => 'success', 'message' => 'เพิ่มข้อมูลสำเร็จ', 'data'=>$count]);
+    echo json_encode(['status' => 'success', 'message' => 'เพิ่มข้อมูลสำเร็จ', 'data' => $count]);
+}
+else if ($status == 'update-cart') {
+        if($qty > 0){
+            $sql = "Update carts set qty='{$qty}' Where id='{$id}'";
+            if ($conn->query($sql) === TRUE) {
+                echo json_encode(['status' => 'success', 'message' => 'อัปเดทตะกร้าสินค้าสำเร็จ']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => $conn->error]);
+            }
+        }else{
+            echo deleteCart($conn, $id);
+        }
+}
+else if($status == 'delete'){
+    echo deleteCart($conn, $id);
+}
+
+function getShipping($conn, $user_id){
+
+}
+function deleteCart($conn, $id){
+        $sql = "Delete From carts Where id = '{$id}' ";
+    if ($conn->query($sql) === TRUE) {
+        return json_encode(['status' => 'success', 'message' => 'ลบข้อมูลสำเร็จ']);
+    } else {
+        return json_encode(['status' => 'error', 'message' => $conn->error]);
+    }
 }
 
 function getCountCart($conn, $user_id){

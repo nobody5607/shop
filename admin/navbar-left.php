@@ -5,9 +5,9 @@
     height: 100vh;
     position: fixed;
     top: 0;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+    <a href="/admin/dashboard.php?active=dashboard" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-4">Sidebar</span>
+        <img src="../assets/img/logo.jpg" class="img-fluid" style="width:100px;height:60px; object-fit: contain;"/>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">

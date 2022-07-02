@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d287fe25-703b-4920-834b-b26a4a9ba662" name="Changes" comment="" />
+    <list default="true" id="d287fe25-703b-4920-834b-b26a4a9ba662" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/05348e6e-d4bd-4b30-97b7-9ea3841fc6f3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/05348e6e-d4bd-4b30-97b7-9ea3841fc6f3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/navbar-left.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/navbar-left.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/order-detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/order-detail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/orders.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/orders.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/script.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/script.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/carts.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/carts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/orders.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/orders.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/products.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/products.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/users.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/chart.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/chart.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/cart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layout/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/layout/footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layout/navbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/layout/navbar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layout/script.php" beforeDir="false" afterPath="$PROJECT_DIR$/layout/script.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/logout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/order-detail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order.php" beforeDir="false" afterPath="$PROJECT_DIR$/order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/profile.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,13 +39,18 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="composer.json" />
+        <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2AqKb5FcQUsyeC5IVlbNZ8igtgj" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -31,7 +60,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/katexoxo/Documents/php/shop/assets/img",
+    "last_opened_file_path": "/Users/katexoxo/Documents/php/shop",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   },
@@ -43,11 +72,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/assets/img" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/api" />
       <recent name="$PROJECT_DIR$/admin" />
+      <recent name="$PROJECT_DIR$/assets/img" />
       <recent name="$PROJECT_DIR$/assets" />
-      <recent name="$PROJECT_DIR$/assets/js" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/api" />
@@ -66,22 +95,24 @@
       <workItem from="1655731744461" duration="13611000" />
       <workItem from="1655775548401" duration="5471000" />
       <workItem from="1655814075210" duration="16253000" />
-      <workItem from="1656302395466" duration="3128000" />
+      <workItem from="1656302395466" duration="13499000" />
+      <workItem from="1656581021689" duration="16985000" />
+      <workItem from="1656748737733" duration="5750000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/api/carts.php</url>
-          <line>36</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

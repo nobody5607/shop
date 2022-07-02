@@ -16,6 +16,8 @@ if ($status != 'delete') {
 if ($status == 'find-all') {
     //insert
     $search = isset($_GET['search']) ? $_GET['search'] : '';
+    $conn->query("set global net_buffer_length=1000000000;");
+    $conn->query("set global max_allowed_packet=1000000000000;");
 
     $sql = "Select * From products";
     if ($search != '') {

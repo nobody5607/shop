@@ -3,12 +3,19 @@
 <head>
     <?php require('./css.php') ?>
     <title>ผู้ใช้งาน</title>
+    <?php
+        $year = date('Y');
+    ?>
 </head>
 <body>
 <?= require('./navbar-left.php') ?>
 <div class="content">
     <div class="container">
         <h3>Dashboard</h3>
+
+        <h4>รายงานยอดขายประจำปี <?= $year; ?></h4>
+        <canvas id="myChart"></canvas>
+
     </div>
 </div>
 <?php require('./script.php') ?>
@@ -17,61 +24,57 @@
     new Vue({
         el: '#app-products',
         data: {
-            search: null,
-            products: [],
+            data: [],
         },
         created: function () {
-            this.getProducts();
+            this.getReport();
         },
         methods: {
-            //get category all
-            getProducts: function () {
-                let url = '/api/products.php?status=find-all';
-                if (this.search != null) {
-                    url += '&search=' + this.search;
-                }
+            getReport: function () {
+                let url = '/api/dashboard.php?status=all-report';
                 axios.get(url).then(response => {
-                    const {data, status, message} = response.data;
-                    this.products = data;
+                    const {data} = response.data;
+                    this.data = data;
+
+                    const ctx = document.getElementById('myChart').getContext('2d');
+                    const myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'],
+                            datasets: [{
+                                label: '<?= $year; ?>',
+                                data: this.data,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+
                 })
             },
-            //set form update
-            edit: function (id) {
-                location.href = '/admin/product-form.php?id=' + id;
-            },
-            //remove category
-            removeUser: function (id) {
-                let text = "Confirm Delete";
-                if (confirm(text) == true) {
-                    let formData = new FormData();
-                    formData.append('id', id);
-                    this.callApi(formData, 'delete');
-                }
-            },
-            callApi: function (formData, status) {
-                let url = '/api/products.php?status=' + status;
-                axios.post(url, formData).then(response => {
-                    const {status, message} = response.data;
-                    if (status == 'success') {
-                        this.getProducts();
-                        Swal.fire({
-                            position: 'center',
-                            icon: status,
-                            title: message,
-                            showConfirmButton: false,
-                            timer: 2000
-                        })
-                    } else {
-                        Swal.fire({
-                            position: 'center',
-                            icon: status,
-                            title: message,
-                            showConfirmButton: false,
-                            timer: 2000
-                        })
-                    }
-                }).catch(error => console.log(error));
-            },
+
 
         }
     })

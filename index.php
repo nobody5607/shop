@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-md-6 pb-4 pt-4">
                 <div class="d-flex">
-                    <input @change="searchProduct" type="text" class="form-control" placeholder="ค้นหาสินค้า">
+                    <input @change="searchProduct" type="text" class="form-control" placeholder="ค้นหาสินค้า Enter">
                 </div>
             </div>
         </div>
@@ -52,14 +52,23 @@
 
         </div>
 
-        <div id="about">
+        <div id="about" class="mt-3">
             <h3>เกี่ยวกับเรา</h3>
+            <div class="text-center">
+                หจก.รัฐพงษ์ธัญญพืชสาโทแอนด์ไวน์ ที่อยู่ 32 หมู่ 1 ต.ธาตุนาเวง อ.เมือง จ.สกลนคร รหัสไปรษณีย์ 47000 โทร 0816618186 0833614930
+            </div>
         </div>
-        <div id="contact">
+        <div id="contact" class="mt-3">
             <h3>ติดต่อเรา</h3>
+            <div class="justify-content-center" style="display: flex">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1329.0350770936166!2d104.12098188721708!3d17.19188244914297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313c8d86e7de4bb9%3A0x7431fcbc0b8b0aba!2z4Lir4LiI4LiBLuC4o-C4seC4kOC4nuC4h-C4qeC5jOC4mOC4seC4jeC4nuC4t-C4iuC4quC4suC5guC4l-C5geC4reC4meC4lOC5jOC5hOC4p-C4meC5jA!5e0!3m2!1sen!2sth!4v1656609705047!5m2!1sen!2sth" width="1024" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
         </div>
-        <div id="how-to-order">
+        <div id="how-to-order" class="mt-3">
             <h3>วิธีการสั่งซื้อ</h3>
+            <div>
+
+            </div>
         </div>
 
 
