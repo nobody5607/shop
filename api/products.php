@@ -9,6 +9,7 @@ if ($status != 'delete') {
         $name = $_POST['name'];
         $price = $_POST['price'];
         $image = $_POST['image'];
+        $stock = $_POST['stock'];
     }
 }
 
@@ -47,7 +48,7 @@ if ($status == 'find-all') {
 }
 else if ($status == 'create') {
     //insert
-    $sql = "Insert Into products(name,price,image) Values('{$name}','{$price}','{$image}') ";
+    $sql = "Insert Into products(name,price,image,stock) Values('{$name}','{$price}','{$image}', '{$stock}') ";
     if ($conn->query($sql) === TRUE) {
         echo json_encode(['status' => 'success', 'message' => 'เพิ่มข้อมูลสำเร็จ']);
     } else {
@@ -55,7 +56,7 @@ else if ($status == 'create') {
     }
 } else if ($status == 'update') {
     //insert
-    $sql = "Update products Set name='{$name}',price='{$price}',image='{$image}'  Where id='{$id}' ";
+    $sql = "Update products Set name='{$name}',price='{$price}',image='{$image}', stock='{$stock}'  Where id='{$id}' ";
     if ($conn->query($sql) === TRUE) {
         echo json_encode(['status' => 'success', 'message' => 'แก้ไขข้อมูลสำเร็จ']);
     } else {

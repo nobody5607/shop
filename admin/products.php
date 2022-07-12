@@ -27,6 +27,7 @@
                     <thead>
                     <tr>
                         <th class="text-center">ชื่อสินค้า</th>
+                        <th class="text-center" width="190">จำนวน</th>
                         <th class="text-center" width="190">ราคา</th>
                        
                         <th class="text-center" width="190">รูปสินค้า</th>
@@ -36,6 +37,7 @@
                     <tbody>
                     <tr v-if="products.length" v-for="i in products">
                         <td>{{i.name}}</td>
+                        <td class="text-end">{{i.stock}}</td>
                         <td class="text-end">{{i.price}}</td>
                         
                         <td><img :src="i.image" class="img-fluid" style="width:100px;object-fit: contain;height: 100px;"></td>

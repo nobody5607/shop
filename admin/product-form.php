@@ -19,9 +19,15 @@
 
                 
                 <div class="mb-3">
+                    <label class="form-label">จำนวน</label>
+                    <input type="text" class="form-control" required v-model="stock">
+                </div>
+
+                <div class="mb-3">
                     <label class="form-label">ราคา</label>
                     <input type="text" class="form-control" required v-model="price">
                 </div>
+                
                 <div class="mb-3">
                     <img :src="image" class="img-fluid" style="width: 100px;height:100px;object-fit: contain"/>
                 </div>
@@ -47,6 +53,7 @@
         data: {
             id:null,
             name:null,
+            stock:0,
             price:null,
             image:null, 
         },
@@ -54,7 +61,7 @@
             this.name = 'Test';
             this.price = 100.00;
             this.image = '';
-            //this.stock = 100;
+            this.stock = 100;
 
             //get user by id
             let id = new URL(location.href).searchParams.get('id');
@@ -94,6 +101,7 @@
                 //set form insert or update
                 let formData = new FormData();
                 formData.append('name', this.name);
+                formData.append('stock', this.stock);
                 formData.append('price', this.price);
                 formData.append('image', this.image); 
 

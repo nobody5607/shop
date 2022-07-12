@@ -13,7 +13,7 @@
 </head>
 
 <body>
-<div id="app-products">
+<div id="app-products" style='height: 100vh;'>
     <!-- Start Top Nav -->
     <?php require('./layout/navbar.php');?>
     <!-- Close Top Nav -->
