@@ -3,7 +3,7 @@
 <head>
     <?php require('./layout/head.php') ?>
 
-    <title>Order</title>
+    <title>รายการสั่งซื้อ</title>
 </head>
 <body>
 
@@ -14,7 +14,7 @@
     <div class="container" style="margin-top: 100px">
         <div class="mb-3">
             <div class="row mb-3 justify-content-center" v-if="order != null">
-                <h3>รายการสั่งซื้อ</h3>
+                <h3>รายการสั่งซื้อ <button @click='print()' class='btn btn-warning'>ปริ้นใบเสร็จ</button></h3>
 
                 <div class="card">
                     <div class="card-body">
@@ -97,6 +97,11 @@
             this.getOrderById();
         },
         methods: {
+            print:function(){
+                let id = new URL(location.href).searchParams.get('id');
+                const url = 'print.php?id='+id;
+                window.open(url, '_blank')
+            },
             getOrderById: async function () {
                 let id = new URL(location.href).searchParams.get('id');
                 const user_id = localStorage.getItem('id');

@@ -20,18 +20,18 @@
                     <div class="card mb-3">
                         <div class="card-body">
                             <div class="card-title">
-                                <label for="">ที่อยู่สำหรับจัดส่ง</label>
+                                <label for=""><b>ที่อยู่สำหรับจัดส่ง</b></label>
                             </div>
                             <form action="#">
-                                <div class="mb-2">
+                                <div class="mb-3">
                                     <label>ชื่อนามสกุล</label>
                                     <input type="text" class="form-control" v-model="user.shipping_name">
                                 </div>
-                                <div class="mb-2">
+                                <div class="mb-3">
                                     <label>ที่อยู่สำหรับจัดส่ง</label>
-                                    <input type="text" class="form-control" v-model="user.shipping_address">
+                                    <textarea type="text" class="form-control" v-model="user.shipping_address"></textarea>
                                 </div>
-                                <div class="mb-2">
+                                <div class="mb-3">
                                     <label>เบอร์โทรศัพท์</label>
                                     <input type="text" class="form-control" v-model="user.shipping_phone">
                                 </div>
@@ -74,28 +74,34 @@
                     </div>
 
                     <div class="mb-3">
-                        <div class="card">
+                        <div class="row">
+                                        <div class="col-12">
+                                        <div class="card">
                             <div class="card-body">
-                                <table>
-                                    <tr>
-                                        <td>ยอดรวมสินค้า:</td>
-                                        <td><b>{{total}}</b> บาท</td>
-                                    </tr>
-                                    <tr>
-                                        <td>รวมการจัดส่ง:</td>
-                                        <td><b>0</b> บาท</td>
-                                    </tr>
-                                    <tr>
-                                        <td>การชำระเงินทั้งหมด:</td>
-                                        <td><b>{{total}}</b> บาท</td>
-                                    </tr>
-                                </table>
+                            <table>
+                                                <tr>
+                                                    <td>ยอดรวมสินค้า:</td>
+                                                    <td><b>{{total}}</b> บาท</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>รวมการจัดส่ง:</td>
+                                                    <td><b>0</b> บาท</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>การชำระเงินทั้งหมด:</td>
+                                                    <td><b>{{total}}</b> บาท</td>
+                                                </tr>
+                                            </table>
                             </div>
                         </div>
+                                            
+                                        </div>
+                                    </div>
+                        
                     </div>
 
-                    <div class="mb-3">
-                        <button @click="checkout()" class="btn btn-primary">สั่งสินค้า</button>
+                    <div class="mb-3 d-flex flex-row-reverse bd-highlight">
+                        <button @click="checkout()" class="btn btn-warning btn-lg">สั่งสินค้า</button>
                     </div>
                 </div>
             </div>
@@ -234,6 +240,17 @@
                 })
             },
             checkout: function () {
+
+                if(this.user.shipping_name == '' || this.user.shipping_address == '' || this.user.shipping_phone ==''){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'กรุณากรอกที่อยู่สำหรับจัดส่ง',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                    return false;
+                }
                 //update shipping
                 this.updateShipping();
                 //end update shipping

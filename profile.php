@@ -59,8 +59,30 @@
         },
         created() {
             this.getProfile();
+            this.getCountCart();
         },
         methods: {
+            getCountCart:function(e){
+
+                let user_id = localStorage.getItem('id');
+
+                if(user_id){
+                    let url = '/api/carts.php?status=get-count';
+                    let formData = new FormData();
+                    formData.append('user_id', localStorage.getItem('id'));
+                    axios.post(url, formData).then(response => {
+                        const {data,status} = response.data;
+                        console.log(data);
+                        if(status === 'success'){
+                            $('#cart-number').text(data.count_cart);
+                        }
+
+                    })
+                }else{
+                    $('#cart-number').text(0);
+                }
+
+                },
             getProfile: async function () {
                 const user_id = localStorage.getItem('id');
                 const url = '/api/users.php?status=find-one' + '&id='+user_id;

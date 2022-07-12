@@ -16,6 +16,10 @@
                     <label class="form-label">ชื่อสินค้า</label>
                     <input type="text" class="form-control" required v-model="name">
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">รายละเอียดสินค้า</label>
+                    <textarea name="detail"  cols="30" rows="5" class='form-control' v-model='detail'></textarea>
+                </div>
 
                 
                 <div class="mb-3">
@@ -56,13 +60,14 @@
             stock:0,
             price:null,
             image:null, 
+            detail:null,
         },
         created: function () {
             this.name = 'Test';
             this.price = 100.00;
             this.image = '';
             this.stock = 100;
-
+            this.detail = "Test";
             //get user by id
             let id = new URL(location.href).searchParams.get('id');
             if(id){
@@ -82,7 +87,8 @@
                         this.id = data.id;
                         this.name = data.name;
                         this.price = data.price;
-                         
+                        this.stock =  data.stock;
+                        this.detail =  data.detail;
                         this.image =  data.image;
                     } else {
                         Swal.fire({
@@ -103,7 +109,8 @@
                 formData.append('name', this.name);
                 formData.append('stock', this.stock);
                 formData.append('price', this.price);
-                formData.append('image', this.image); 
+                formData.append('image', this.image);
+                formData.append('detail', this.detail); 
 
                 let status = 'create';
                 if (this.id) {

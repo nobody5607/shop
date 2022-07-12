@@ -1,4 +1,4 @@
-<footer class="bg-dark" id="tempaltemo_footer">
+<!-- <footer class="footer bg-light" id="tempaltemo_footer">
 
     <div class="w-100 bg-black py-3">
         <div class="container">
@@ -14,4 +14,4 @@
         </div>
     </div>
 
-</footer>
+</footer> -->

@@ -10,6 +10,7 @@ if ($status != 'delete') {
         $price = $_POST['price'];
         $image = $_POST['image'];
         $stock = $_POST['stock'];
+        $detail = $_POST['detail'];
     }
 }
 
@@ -38,7 +39,7 @@ if ($status == 'find-all') {
 }else if ($status == 'find-one') {
     //get user by id
     $id = isset($_GET['id']) ? $_GET['id'] : '';
-    $sql = "Select * From products Where id = {$id}";
+    $sql = "Select * From products Where id = {$id}"; 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         echo json_encode(['status' => 'success', 'message' => '', 'data'=>$result->fetch_assoc()]);
@@ -48,7 +49,7 @@ if ($status == 'find-all') {
 }
 else if ($status == 'create') {
     //insert
-    $sql = "Insert Into products(name,price,image,stock) Values('{$name}','{$price}','{$image}', '{$stock}') ";
+    $sql = "Insert Into products(name,price,image,stock,detail) Values('{$name}','{$price}','{$image}', '{$stock}','{$detail}') ";
     if ($conn->query($sql) === TRUE) {
         echo json_encode(['status' => 'success', 'message' => 'เพิ่มข้อมูลสำเร็จ']);
     } else {
@@ -56,7 +57,7 @@ else if ($status == 'create') {
     }
 } else if ($status == 'update') {
     //insert
-    $sql = "Update products Set name='{$name}',price='{$price}',image='{$image}', stock='{$stock}'  Where id='{$id}' ";
+    $sql = "Update products Set name='{$name}',price='{$price}',image='{$image}', stock='{$stock}',detail='{$detail}'  Where id='{$id}' ";
     if ($conn->query($sql) === TRUE) {
         echo json_encode(['status' => 'success', 'message' => 'แก้ไขข้อมูลสำเร็จ']);
     } else {

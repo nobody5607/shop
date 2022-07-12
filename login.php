@@ -32,7 +32,7 @@
 
             <div class="d-grid gap-2">
                 <button @click="submit" class="btn btn-primary btn-block mb-4">เข้าสู่ระบบ</button>
-                <a class="btn btn-link mb-4">สมัครสมาชิก</a>
+                <a href='register.php' class="btn btn-link mb-4">สมัครสมาชิก</a>
             </div>
         </form>
     </div>
