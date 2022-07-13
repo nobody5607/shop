@@ -14,7 +14,7 @@
     <div class="container" style="margin-top: 100px">
         <div class="mb-3">
             <div class="row mb-3 justify-content-center" v-if="order != null">
-                <h3>รายการสั่งซื้อ <button @click='print()' class='btn btn-warning'>ปริ้นใบเสร็จ</button></h3>
+                <h3>รายการสั่งซื้อ <button v-if='payment_status == "ชำระเงินแล้ว" ' @click='print()' class='btn btn-warning'>ปริ้นใบเสร็จ</button></h3>
 
                 <div class="card">
                     <div class="card-body">
