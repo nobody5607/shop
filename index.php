@@ -36,8 +36,13 @@
                         <div class="h3 text-decoration-none text-center">{{i.name}}</div>
 
                         <div class="row mt-3">
-                            <div class="col-6">
+                            <div class="col-6"> 
                                 <p class="text-center mb-0" style="font-weight: bold !important;">{{i.price}} <small>บาท</small></p>
+                            </div>
+                            <div class="col-6">
+                            <div v-if='i.stock <= 0'>
+                                        <label class='text-danger'>สินค้าหมด</label>
+                                    </div>
                             </div>
                         </div>
 

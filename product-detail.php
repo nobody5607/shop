@@ -37,10 +37,13 @@
                         <div class='mt-3'>
                             <div class='mb-3 row'>
                                 <div class="col-1"> <label>จำนวน</label></div>
-                                <div class="col-2"><input type='number' v-model='number' class='form-control' style='text-align:center;' min='1' :max='product.stock' value='1'></div>
+                                <div class="col-2"><input :disabled="product.stock <= 0" type='number' v-model='number' class='form-control' style='text-align:center;' min='1' :max='product.stock' value='1'></div>
                                 <div class="col-3"><small>มีสินค้าทั้งหมด {{product.stock}} ชิ้น</small></div>
                             </div>
-                            <button class="btn btn-success" @click="addToCart(product)">เพิ่มลงในตะกร้า</button>
+                            <div v-if='product.stock <= 0'>
+                                <label class='text-danger'>สินค้าหมด</label>
+                            </div>
+                            <button class="btn btn-success" @click="addToCart(product)" :disabled="product.stock <= 0">เพิ่มลงในตะกร้า</button>
                         </div>
                 </div>
             </div>

@@ -21,7 +21,7 @@
                         <div class="card-body">
                             <div>
                                 <label for="">สถานะการชำระเงิน</label>
-                                <select class="" v-model="payment_status">
+                                <select :disabled='order.delivery_status == 3' class="" v-model="payment_status">
                                     <option value="0">กรุณาชำระเงิน</option>
                                     <option value="1">รอดำเนินการ</option>
                                     <option value="2">ชำระเงินแล้ว</option>
@@ -29,14 +29,16 @@
                             </div>
                             <div>
                                 <label for="">สถานะการจัดส่ง</label>
-                                <select class="" v-model="delivery_status">
+                                <select :disabled='order.delivery_status == 3' class="" v-model="delivery_status">
                                     <option value="0">รอดำเนินการ</option>
                                     <option value="1">กำลังจัดส่ง</option>
                                     <option value="2">จัดส่งสำเร็จ</option>
                                     <option value="3">ยกเลิก</option>
                                 </select>
                             </div>
-                            <button @click="updateOrderStatus(order)" class="btn btn-primary mt-3">อัปเดทสถานะการสั่งซื้อ</button>
+                            <div v-if='order.delivery_status != 3'>
+                                <button @click="updateOrderStatus(order)" class="btn btn-primary mt-3">อัปเดทสถานะการสั่งซื้อ</button>
+                            </div>
                         </div>
                     </div>
 

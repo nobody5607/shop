@@ -3,7 +3,7 @@
 include "./config.php";
 
 $status = isset($_GET['status']) ? $_GET['status'] : '';
-
+ini_set("memory_limit","1000M");
 
 switch ($status){
     case 'get-order-all':
@@ -84,9 +84,16 @@ switch ($status){
         $result = $conn->query($sql);
         while($row = $result->fetch_assoc()) {
             $total_price += $row['price'] * $row['qty'];
+            $qty = $row['qty'];
+            $product_id = $row['product_id'];
+
             $sql_order_detail = "INSERT INTO order_details(order_id, product_id, product_name,qty,price,product_image) 
                 VALUES('{$order_id}', '{$row['product_id']}', '{$row['product_name']}' , '{$row['qty']}', '{$row['price']}','{$row['image']}'); ";
             $conn->query($sql_order_detail);
+
+
+            //update stock in product
+            $conn->query("UPDATE products SET stock=(SELECT stock FROM products WHERE id='{$product_id}')-{$qty} WHERE id='{$product_id}' ");
         }
         //insert orders
         $create_date = date('Y-m-d h:i:s');//date now
@@ -160,6 +167,16 @@ switch ($status){
 
         $sql = "UPDATE orders SET delivery_status = '{$delivery_status}', payment_status='{$payment_status}' WHERE id='{$order_id}'";
         if ($conn->query($sql)) {
+            if($delivery_status == 3){
+                    $sql = "SELECT * FROM order_details WHERE order_id='{$order_id}'";
+                    $result = $conn->query($sql);
+                    while($row = $result->fetch_assoc()) {
+                        $qty = $row['qty'];
+                        $product_id = $row['product_id']; 
+                        //update stock in product
+                        $conn->query("UPDATE products SET stock=(SELECT stock FROM products WHERE id='{$product_id}')+{$qty} WHERE id='{$product_id}' ");
+                    }
+            }
             echo json_encode(['status' => 'success', 'message' => 'อัปเดทสถานะคำสั่งซื้อสำเร็จ']);
         } else {
             echo json_encode(['status' => 'error', 'message' =>'เกิดข้อผิดพลาดในการสั่งซื้อสินค้า']);
