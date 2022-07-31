@@ -17,10 +17,10 @@
                         <a class="nav-link" href="index.php#shop">สินค้าของเรา</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php#about">เกี่ยวกับเรา</a>
+                        <a class="nav-link" href="index.php#about">ติดต่อเรา</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php#contact">ติดต่อเรา</a>
+                        <a class="nav-link" href="index.php#contact">ที่ตั้งเรา</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php#how-to-order">วิธีการสั่งซื้อ</a>

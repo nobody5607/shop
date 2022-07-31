@@ -22,20 +22,25 @@
 
     <form @submit="submit">
                 <div class="mb-3">
-                    <label class="form-label">ชื่อผู้ใช้งาน</label>
+                    <label class="form-label">ชื่อผู้ใช้งาน <span class='text-danger'>*</span></label>
                     <input type="text" class="form-control" required v-model="username">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">รหัสผ่าน</label>
+                    <label class="form-label">รหัสผ่าน <span class='text-danger'>*</span></label>
                     <input type="password" class="form-control" required v-model="password">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">ชื่อ นามสกุล</label>
+                    <label class="form-label">ชื่อ นามสกุล <span class='text-danger'>*</span></label>
                     <input type="text" class="form-control" required v-model="name">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">เบอร์โทรศัพท์</label>
+                    <label class="form-label">เบอร์โทรศัพท์ <span class='text-danger'>*</span></label>
                     <input type="text" class="form-control" required v-model="phone">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">ที่อยู่ <span class='text-danger'>*</span></label>
+                    <textarea name="shipping_address"  cols="30" rows="5" required class='form-control' v-model='shipping_address'></textarea>
                 </div>
                 
                 <button type="submit" class="btn btn-primary">บันทึก</button>
@@ -57,13 +62,29 @@
                 password:null,
                 name:null,
                 phone:null,
+                shipping_address:null
             },
             created: function () {
                 
             },
             methods: {
+                
+                isPhoneNo:function(input){
+                    var regExp = /^0[0-9]{8,9}$/i;
+                    return regExp.test(input);
+                },
                 submit: function (e) {
-                //check insert or update
+                    e.preventDefault();
+                    if(this.isPhoneNo(this.phone) == false){
+                        Swal.fire({
+                                position: 'center',
+                                icon: "warning",
+                                title: "กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง",
+                                showConfirmButton: false,
+                                timer: 2000
+                            })
+                        return false;
+                    }
 
                 //set form insert or update
                 let formData = new FormData();
@@ -72,6 +93,9 @@
                 formData.append('name', this.name);
                 formData.append('phone', this.phone);
                 formData.append('role', 'user');
+                formData.append('shipping_address', this.shipping_address);
+
+                
                 let status = 'create';
                 let url = '/api/users.php?status=' + status;
                 axios.post(url, formData).then(response => {
@@ -98,7 +122,7 @@
                         })
                     }
                 }).catch(error => console.log(error));
-               e.preventDefault();
+               
             }
            
             }

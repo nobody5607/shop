@@ -13,22 +13,22 @@
             <h3>เพิ่มรายการสินค้า</h3>
             <form @submit="submit">
                 <div class="mb-3">
-                    <label class="form-label">ชื่อสินค้า</label>
+                    <label class="form-label">ชื่อสินค้า <span class='text-danger'>*</span></label>
                     <input type="text" class="form-control" required v-model="name">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">รายละเอียดสินค้า</label>
+                    <label class="form-label">รายละเอียดสินค้า </label>
                     <textarea name="detail"  cols="30" rows="5" class='form-control' v-model='detail'></textarea>
                 </div>
 
                 
                 <div class="mb-3">
-                    <label class="form-label">จำนวน</label>
+                    <label class="form-label">จำนวน <span class='text-danger'>*</span></label>
                     <input type="text" class="form-control" required v-model="stock">
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">ราคา</label>
+                    <label class="form-label">ราคา <span class='text-danger'>*</span></label>
                     <input type="text" class="form-control" required v-model="price">
                 </div>
                 
@@ -66,7 +66,7 @@
             this.name = 'Test';
             this.price = 100.00;
             this.image = '';
-            this.stock = 100;
+            this.stock = 0;
             this.detail = "Test";
             //get user by id
             let id = new URL(location.href).searchParams.get('id');

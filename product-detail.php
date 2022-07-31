@@ -149,7 +149,10 @@
                                 title: message,
                                 showConfirmButton: false,
                                 timer: 2000
-                            })
+                            });
+                            setTimeout(()=>{
+                                location.href = 'cart.php';
+                            },2000);
                         }
 
                     })

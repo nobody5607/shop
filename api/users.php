@@ -11,6 +11,8 @@ if($status != 'delete'){
         $name = isset($_POST['name']) ? $_POST['name'] : '';
         $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
         $role = isset($_POST['role']) ? $_POST['role'] : '';
+
+        $shipping_address= isset($_POST['shipping_address']) ? $_POST['shipping_address'] : '';
     }
 }
 if ($status == 'find-all') {
@@ -47,7 +49,7 @@ if ($status == 'find-one') {
 }
 else if ($status == 'create') {
     //insert
-    $sql = "Insert Into user(username,password,name,phone,role) Values('{$username}','{$password}', '{$name}', '{$phone}', '{$role}') ";
+    $sql = "Insert Into user(username,password,name,phone,role,shipping_address) Values('{$username}','{$password}', '{$name}', '{$phone}', '{$role}', '{$shipping_address}') ";
     if ($conn->query($sql) === TRUE) {
         echo json_encode(['status' => 'success', 'message' => 'เพิ่มข้อมูลผู้ใช้งานสำเร็จ']);
     } else {
@@ -55,7 +57,7 @@ else if ($status == 'create') {
     }
 }else if($status == 'update'){
     //insert
-    $sql = "Update user Set username='{$username}',password='{$password}',name='{$name}',phone='{$phone}',role='{$role}' Where id='{$id}' ";
+    $sql = "Update user Set username='{$username}',password='{$password}',name='{$name}',phone='{$phone}',role='{$role}',shipping_address='{$shipping_address}' Where id='{$id}' ";
     if ($conn->query($sql) === TRUE) {
         echo json_encode(['status' => 'success', 'message' => 'แก้ไขข้อมูลผู้ใช้งานสำเร็จ']);
     } else {
