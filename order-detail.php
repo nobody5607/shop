@@ -67,6 +67,19 @@
                                 <td>รวมค่าสินค้า</td>
                                 <td><b>{{new Intl.NumberFormat().format(order.total_price)}} บาท</b></td>
                             </tr>
+                            <tr> 
+                            <td></td><td>จัดส่งโดย </td>
+                                                    <td>Flash Express</td>
+                                                </tr>
+                                                <tr> 
+                                                <td></td> <td>ค่าจัดส่ง </td>
+                                                    <td>100 บาท</td>
+                                                </tr>
+                                                <tr>
+                                <td></td>
+                                <td>รวมทั้งสิ้น</td>
+                                <td><b>{{new Intl.NumberFormat().format(parseInt(order.total_price)+100)}} บาท</b></td>
+                            </tr>                    
                             </tfoot>
                         </table>
                     </div>

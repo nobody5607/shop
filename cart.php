@@ -62,6 +62,7 @@
                                                    class="form-control text-center"/>
                                         </td>
                                         <td>{{new Intl.NumberFormat().format(c.price)}} บาท</td>
+                                       
                                         <td>{{new Intl.NumberFormat().format(c.price * c.qty)}} บาท</td>
                                         <td >
                                             <button @click="deleteCart(c.id)" class="btn btn-danger">ลบ</button>
@@ -83,10 +84,17 @@
                                                     <td>ยอดรวมสินค้า:</td>
                                                     <td><b>{{total}}</b> บาท</td>
                                                 </tr>
-                                                
+                                                <tr> 
+                                                    <td>จัดส่งโดย </td>
+                                                    <td>Flash Express</td>
+                                                </tr>
+                                                <tr> 
+                                                    <td>ค่าจัดส่ง </td>
+                                                    <td>100 บาท</td>
+                                                </tr>
                                                 <tr>
                                                     <td>การชำระเงินทั้งหมด:</td>
-                                                    <td><b>{{total}}</b> บาท</td>
+                                                    <td><b>{{parseInt(total)+100}}</b> บาท</td>
                                                 </tr>
                                             </table>
                             </div>

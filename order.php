@@ -42,8 +42,9 @@
     align-items: flex-end;
     display: flex;">
                         <div class="text-right">
-                            <div>ค่าจัดส่ง: <span>0 บาท</span></div>
-                            <div>ยอดคำสั่งซื้อทั้งหมด: <span style="font-size: 20px;font-weight: 100;color: #FF5722;padding-left:5px;">{{new Intl.NumberFormat().format(i.total_price)}} บาท</span></div>
+                        <div>ราคาสินค้า: <span style="">{{new Intl.NumberFormat().format(parseInt(i.total_price))}} บาท</span></div>
+                            <div>ค่าจัดส่ง: <span>100 บาท</span></div>
+                            <div>ยอดคำสั่งซื้อทั้งหมด: <span style="font-size: 20px;font-weight: 100;color: #FF5722;padding-left:5px;">{{new Intl.NumberFormat().format(parseInt(i.total_price)+100)}} บาท</span></div>
                             <div class="py-2">
                                 <a href="#" @click="orderDetail(i.id)" class="btn btn-info">ดูข้อมูลการสั่งซื้อ</a>
                             </div>
